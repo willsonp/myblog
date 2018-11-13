@@ -12,7 +12,7 @@ function registrarse(){
         var username = $("#txtname").val();
         var email = $("#txtmail").val();
         var password = $("#txtpwd").val();
-        if(username==="willson" && email==="willvalentinpf@gmail.com" && password==="perez"){
+        if(username==="willson" && email==="willvalentinpf@gmail.com"){
             console.log("Registro Valido..!");
 
         }else{
