@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
     $("#btnlogin").click(function(){
-       //alert("Hello...");
+        
        btnlogin();
     });
 });
@@ -9,11 +9,23 @@ $(document).ready(function(){
 function btnlogin(){
     var username = $("#txtuser").val();
     var password = $("#txtpwd").val();
-    if("willson"===username && "perez"===password){
-        console.log("Autorizado..!");
+    
+    // validar no esten en blanco
+    if(username==""){
+        alert("El campo User Name no Debe Estar en Blanco!");
+        return;
+     }else if(password==""){
+         alert("El campo Clave no Debe Estar en Blanco!");
+         return;
+     }else{
+         alert("Puede Continuar con las Validaciones..!");                
+     }
+
+    if("willson"===username && "1234"===password){
+        alert("Autorizado..!");
 
     }else{
-      console.log("NO Autorizado..!");
+      alert("NO Autorizado..!");
 
     }
 }
