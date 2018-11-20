@@ -6,12 +6,12 @@ $(document).ready(function(){
 
 
 function registrarse(){
-        var username = $("#txtname").val();
-        var email = $("#txtmail").val();
-        var password = $("#txtpwd").val();   
+        let name = $("#txtname").val();
+        let email = $("#txtmail").val();
+        let password = $("#txtpwd").val();   
 
        // validar no esten en blanco
-        if(username==""){
+        if(name==""){
            alert("El campo User Name no Debe Estar en Blanco!");
            return;
         }else if(email==""){
@@ -24,14 +24,14 @@ function registrarse(){
             alert("Puede Continuar con las Validaciones..!");                
         }
         
-
-        var data = {nusername: username,
-            email: email,
-            password: password
+        //let equivalente a var..esto es lo que se usa mas en la actualidad
+        let data = {name,
+            email,
+            password
         }
         console.log(data);
         
-        fetch("http://68.183.27.173:8080/registrarse",{
+        fetch("http://68.183.27.173:8080/register",{
             method:'POST', //or 'PUT'
             body: JSON.stringify(data),
             headers:{

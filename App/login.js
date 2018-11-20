@@ -7,12 +7,12 @@ $(document).ready(function(){
 });
 
 function btnlogin(){
-    var username = $("#txtuser").val();
-    var password = $("#txtpwd").val();
+    let email = $("#txtuser").val();
+    let password = $("#txtpwd").val();
     
     // validar no esten en blanco
-    if(username==""){
-        alert("El campo User Name no Debe Estar en Blanco!");
+    if(email==""){
+        alert("El campo User Name no Debe Estar en Blanco, por favor registrar su correo Electronico!");
         return;
      }else if(password==""){
          alert("El campo Clave no Debe Estar en Blanco!");
@@ -21,11 +21,27 @@ function btnlogin(){
          alert("Puede Continuar con las Validaciones..!");                
      }
 
-    if("willson"===username && "1234"===password){
-        alert("Autorizado..!");
-
-    }else{
-      alert("NO Autorizado..!");
-
+    //let equivalente a var..esto es lo que se usa mas en la actualidad
+    let data = {
+        email : email,
+        password: password
     }
+    console.log(data);
+    
+    fetch("http://68.183.27.173:8080/login",{
+        method:'POST', //or 'PUT'
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type':'Application/json'
+        }
+    }).then(res =>res.json())
+    .then(response =>{
+        localStorage.setItem('token',JSON.stringify(response))
+        //console.log('Sussess',JSON.stringify(response))
+
+        console.log(JSON.parse(localStorage.getItem('token')));
+    })       
+        .catch(error =>
+            console.log('Error',error)); 
+
 }
