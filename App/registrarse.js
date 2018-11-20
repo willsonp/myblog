@@ -38,9 +38,15 @@ function registrarse(){
                 'Content-Type':'Application/json'
             }
         }).then(res =>res.json())
-        .then(response =>
-            console.log('Sussess',JSON.stringify(response)))
-            .catch(error =>
+        .then(response =>{
+            console.log('Sussess',JSON.stringify(response))
+            //recorrer el localStorage
+            for (i=0;i<localStorage.length;i++){
+            let llave=localStorage.key(i);
+            var datos = localStorage.getItem(llave);    
+            console.log(datos);
+            }
+        }).catch(error =>
                 console.log('Error',error));           
         
 }
