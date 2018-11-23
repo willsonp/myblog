@@ -68,7 +68,7 @@ body{
 }
 .fondo_web{
         /* The image used */
-        background-image: url("fondo_web.jpg");
+        background-image: url("../assets/images/fondo_web.jpg");
        
         /* Full height */
         height: 100%; 
