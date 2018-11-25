@@ -20,9 +20,9 @@ function registrarse(){
         }else if(password==""){
             alert("El campo Clave no Debe Estar en Blanco!");
             return;
-        }else{
-            alert("Puede Continuar con las Validaciones..!");                
+        
         }
+
         
         //let equivalente a var..esto es lo que se usa mas en la actualidad
         let data = {name,

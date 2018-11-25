@@ -1,0 +1,23 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "Curso de HTML, CSS y JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willsonp/myblog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willsonp/myblog/issues"
+  },
+  "homepage": "https://github.com/willsonp/myblog#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
