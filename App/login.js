@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
     $("#btnlogin").click(function(){
-        
+      
        btnlogin();
     });
 });
@@ -33,6 +33,7 @@ function btnlogin(){
         headers:{
             'Content-Type':'Application/json'
         }
+        
     }).then(res =>res.json())
     .then(response =>{
         //almacenamos el valor de la clave en token
@@ -46,9 +47,26 @@ function btnlogin(){
             //console.log(datos);
         }
         console.log(datos);
+               
+        //para acceder a los valores
+        var obj = JSON.parse(datos);
+        var token = obj['token'];
+        console.log(token);
+
+        //llmar el blog
+        //if(response.ok==200){
+            location.href="./blog.html";
+        //    return;
+       // }
+
         //console.log(JSON.parse(localStorage.getItem('token')));
     })       
-        .catch(error =>
-            console.log('Error',error)); 
-
+        .catch(error =>{
+            console.log('Error',error)
+           // location.href="./registrarse.html";
+            
+        });
+           
+        
+            
 }

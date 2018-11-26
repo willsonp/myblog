@@ -5,8 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Historial de los Posts</title>
+     <!--Para uso de CSS Styles-->
+     <link rel="stylesheet" href="./css/estilos.css">
+     <script src="./JS/jquery.js"></script>     
+     <script src="./App/blog.js"></script>
+   
 </head>
 <body>
+    <form action="" method="POST" class="blog"  >
+            <h1 class="blog_titulo"> Registre sus Comentarios..!</h1> 
+      
+            <div class="container">
+                    <form action="">
+                      <div class="row">
+                        <div class="col-75">
+                          <input type="text" id="fname" name="firstname" placeholder="Su Nombre..">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Su apellido..">
+                        </div>
+                      </div>
+                      <div class="row">
+                                  <div class="col-75">
+                                    <input type="text" id="email" name="emaila" placeholder="Su Correo..">
+                                  </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-75">
+                          <textarea id="subject" name="subject" placeholder="Escriba un Comentario.." style="height:200px"></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <input type="submit" value="Submit" id="btnsub">
+                      </div>
+                    </form>
+                  </div>
+
+    </form>
     
 </body>
 </html>
