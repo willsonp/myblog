@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 function btnsub(){
         let name = $("#fname").val();
-        let createdAt = new Date().getDate();
+        let createdAt = new Date().toLocaleString();
         let email = $("#email").val();
         let posts = $("#subject").val();   
 
