@@ -10,7 +10,7 @@ body{
     background-size:100% 100%;
       
 }
-.registrarse, .login,.blog{
+.registrarse, .login{
     width: 500px;
     max-width: 100%;
     margin: auto;
@@ -21,7 +21,7 @@ body{
     
 }
 .registrarse_titulo, .registrarse_label, .registrarse_submit, .registrarse_input,
-.login_input, .login_label, .login_titulo, .login_submit,#btnsub,#fname,#lname,#email,#subject{
+.login_input, .login_label, .login_titulo, .login_submit,#btnsub,#titulo,#tag,#body,#subject{
     display: block;
     width: 100%;    
     font-size: 1.0cm;
@@ -33,7 +33,7 @@ body{
     color: rgba(0,0,0,0.3);    
     font-size: .80cm;
 }
-.registrarse_input, .login_input,#fname,#lname,#email,#subject{
+.registrarse_input, .login_input,#fname,#titulo,#tag,#subject{
     padding: 0.1px;    
     background: rgba(0,0,0,0);
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -145,3 +145,13 @@ body{
     background-color: #333; 
     color: white;
     text-align: center;}
+.blog{
+        width: 700px;
+        max-width: 100%;
+        margin: auto;
+        margin-top: 40px;
+        padding: 20px;
+        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+        position: relative;   
+        
+    }

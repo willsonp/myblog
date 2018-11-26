@@ -6,37 +6,39 @@ $(document).ready(function(){
 
 
 function btnsub(){
-        let name = $("#fname").val();
-        let createdAt = new Date().toLocaleString();
-        let email = $("#email").val();
-        let posts = $("#subject").val();   
+        let title = $("#titulo").val();
+        let tags = $("#tag").val();
+        let body = $("#subject").val();   
+        
+        //let createdAt = new Date().toLocaleString();
+
+      
 
        // validar no esten en blanco
-        if(name==""){
-           alert("El campo User Name no Debe Estar en Blanco!");
+        if(title==""){
+           alert("El campo Titulo del Posts no Debe Estar en Blanco!");
            return;
 
-        }else if(email==""){
-            alert("El campo Email no Debe Estar en Blanco!");
+        }else if(body==""){
+            alert("El campo Cuerpo o comentario del Posts Estar en Blanco!");
             return;
-        }else if(posts==""){
-            alert("El campo Clave no Debe Estar en Blanco!");
+        }else if(tags==""){
+            alert("El campo Tags NO Debe Estar en Blanco!");
             return;
         
         }
-
-        /* valores que retorna del Json
-        Sussess {"createdAt":0,"email":"wilson.test@test.com","id":151,"name":"willson","password":"1234","posts":0}
-        */
-
         //let equivalente a var..esto es lo que se usa mas en la actualidad
-        let data = {createdAt,
-            email,
-            name,
-            posts
-        }
+        let data = {title,
+            body,
+            tags:[tags]
+        };
         console.log(data);
        
+
+        //para acceder a los valores gurdados en el localStorage
+        var usuario = JSON.parse(localStorage.getItem('token'));
+        console.log(usuario);
+
         
             
         fetch("http://68.183.27.173:8080/post",{
@@ -44,31 +46,15 @@ function btnsub(){
             body: JSON.stringify(data),                             
             headers:{
                 'Content-Type':'Application/json',
-                'Authorization':'Bearer ${token}'
+                'Authorization':`Bearer ${usuario.token}`
             }
         }).then(res =>res.json())
         .then(response =>{
-            localStorage.setItem('token',JSON.stringify(response));
-            console.log('Sussess',JSON.stringify(response));
-            //recorrer el localStorage
-            
-            for (i=0;i<localStorage.length;i++){
-            let llave=localStorage.key(i);
-            var datos = localStorage.getItem(llave);    
-            console.log(datos);
-          
-            if(response.error==401){
-                alert("Usuario No Autorizado");
-                return;
-            }
 
-            }
+            console.log('Sussess',JSON.stringify(response));                       
         }).catch(error =>{
-            console.log('Error',error);
-            if(response.error==401){
-                alert("Usuario No Autorizado");
-                return;
-            }
+            console.log('Error',error);           
+
         });
         
                            

@@ -38,8 +38,9 @@ function btnlogin(){
     .then(response =>{
         //almacenamos el valor de la clave en token
         localStorage.setItem('token',JSON.stringify(response))
-        //console.log('Sussess',JSON.stringify(response))
-        
+        console.log('Sussess',JSON.stringify(response))
+       
+        /*
         //recorrer el localStorage
         for (i=0;i<localStorage.length;i++){
             let llave=localStorage.key(i);
@@ -52,7 +53,7 @@ function btnlogin(){
         var obj = JSON.parse(datos);
         var token = obj['token'];
         console.log(token);
-
+        */
        
         //console.log(JSON.parse(localStorage.getItem('token')));
     })       
