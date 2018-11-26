@@ -53,12 +53,7 @@ function btnlogin(){
         var token = obj['token'];
         console.log(token);
 
-        //llmar el blog
-        //if(response.ok==200){
-            location.href="./blog.html";
-        //    return;
-       // }
-
+       
         //console.log(JSON.parse(localStorage.getItem('token')));
     })       
         .catch(error =>{

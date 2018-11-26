@@ -10,7 +10,7 @@ body{
     background-size:100% 100%;
       
 }
-.registrarse, .login{
+.registrarse, .login,.blog{
     width: 500px;
     max-width: 100%;
     margin: auto;
@@ -34,11 +34,12 @@ body{
     font-size: .80cm;
 }
 .registrarse_input, .login_input,#fname,#lname,#email,#subject{
-    padding: 0.5px;    
+    padding: 0.1px;    
     background: rgba(0,0,0,0);
     border: 1px solid rgba(0, 0, 0, 0.3);
-    margin-bottom: 35px;
-    border-radius: 35px;    
+    margin-bottom: 20px;
+    border-radius: 20px;   
+    font-size: 30px; 
     }
 .registrarse_titulo, .login_titulo,.blog_titulo{
     text-align: center;
@@ -143,15 +144,4 @@ body{
     width: 100%;
     background-color: #333; 
     color: white;
-    text-align: center;
- }
- .blog{
-    width: 600px;
-    max-width: 100%;
-    margin: auto;
-    margin-top: 40px;
-    padding: 20px;
-    box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
-    position: relative;   
-    
-}
+    text-align: center;}
