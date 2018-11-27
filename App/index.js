@@ -27,10 +27,10 @@ function getposts(){
                 let {title, userEmail,userName,Id,post,comments,createdAt,like,body}=response[element];
                 return `
                         <h3>${title}</h3>
-                        <h4>${userName}</h4>
-                        <h5>${userEmail}</h5>
+                        <h4>${userName}</h4>                                                                   
+                        <a href="./blog.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
                         <h3>${comments}</h3>
-                        <h3>${body}</h3>
+                        <h4>${body}</h4>
                         `
                  
             })
