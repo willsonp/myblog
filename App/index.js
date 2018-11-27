@@ -27,7 +27,7 @@ function getposts(){
                 let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body}=response[element];
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
 
-                return `
+                return `<h1 class="htitulo">Lista de Posts..</h1>
                         <h4 class="htitle"> ${title}  <a href="./blog.html"> <i class="fa fa-fw fa-pencil"></i> </a>                          
                         </h4>
                         <h5>${tags}</h5>                        

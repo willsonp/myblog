@@ -47,7 +47,7 @@ body{
     color: green;
     padding: 5px;
 }
-.registrarse_submit, .login_submit,#btnsub{
+.registrarse_submit, .login_submit,#btnsub,.htitulo{
     background:green;
     color: white;
     padding: 5px 20px;
