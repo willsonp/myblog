@@ -36,7 +36,7 @@ function getposts(){
                            Posted on: ${fecha} 
                         </h5>                                                                                           
                         <a href="./registrarse.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
-                        <h4><i class="fa fa-fw fa-star">${comments}</i></h4>
+                        <h4 class="hcoment"><i class="fa fa-fw fa-star">${comments}</i></h4>
                         <h5>${body}</h5>
                         `
                  
