@@ -24,13 +24,16 @@ function getposts(){
 
             let obj=Object.keys(response).map(element=>{
 
-                let {title, userEmail,userName,Id,post,comments,createdAt,like,body}=response[element];
+                let {title, userEmail,userName,tags,post,comments,createdAt,like,body}=response[element];
                 return `
-                        <h3>${title}</h3>
-                        <h4>${userName}</h4>                                                                   
-                        <a href="./blog.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
-                        <h3>${comments}</h3>
-                        <h4>${body}</h4>
+                        <h4> ${title}  <a href="./blog.html"> <i class="fa fa-fw fa-pencil"></i> </a> </h4>
+                        <h5>${tags}</h5>
+                        <h5>By: 
+                           <a href="./registrarse.html">${userName}</a>                       
+                        </h5>                                                                                           
+                        <a href="./registrarse.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
+                        <h4><i class="fa fa-fw fa-star">${comments}</i></h4>
+                        <h5>${body}</h5>
                         `
                  
             })
