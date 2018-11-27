@@ -24,12 +24,16 @@ function getposts(){
 
             let obj=Object.keys(response).map(element=>{
 
-                let {title, userEmail,userName,tags,post,comments,createdAt,like,body}=response[element];
+                let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body}=response[element];
+                let fecha = new Date(createdAt).toLocaleDateString('es-RD');
+
                 return `
-                        <h4> ${title}  <a href="./blog.html"> <i class="fa fa-fw fa-pencil"></i> </a> </h4>
-                        <h5>${tags}</h5>
+                        <h4 class="htitle"> ${title}  <a href="./blog.html"> <i class="fa fa-fw fa-pencil"></i> </a>                          
+                        </h4>
+                        <h5>${tags}</h5>                        
                         <h5>By: 
-                           <a href="./registrarse.html">${userName}</a>                       
+                           <a href="./registrarse.html">${userName}</a> 
+                           Posted on: ${fecha} 
                         </h5>                                                                                           
                         <a href="./registrarse.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
                         <h4><i class="fa fa-fw fa-star">${comments}</i></h4>
