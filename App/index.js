@@ -24,13 +24,17 @@ function getposts(){
 
             let obj=Object.keys(response).map(element=>{
 
-                let {title, userEmail,userName,Id,post,comments,createdAt,like}=response[element];
-                return `<h3>${title}</h3>
+                let {title, userEmail,userName,Id,post,comments,createdAt,like,body}=response[element];
+                return `
+                        <h3>${title}</h3>
                         <h4>${userName}</h4>
                         <h5>${userEmail}</h5>
                         <h3>${comments}</h3>
-                        <h3>${like}</h3>`
+                        <h3>${body}</h3>
+                        `
+                 
             })
+           
 
             document.getElementById("post").innerHTML=obj;
         
