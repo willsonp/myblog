@@ -12,7 +12,7 @@ function btnsub(){
         
         //let createdAt = new Date().toLocaleString();
 
-      
+
 
        // validar no esten en blanco
         if(title==""){
@@ -51,7 +51,8 @@ function btnsub(){
         }).then(res =>res.json())
         .then(response =>{
 
-            console.log('Sussess',JSON.stringify(response));                       
+            console.log('Sussess',JSON.stringify(response));   
+                                
         }).catch(error =>{
             console.log('Error',error);           
 

@@ -37,24 +37,11 @@ function btnlogin(){
     }).then(res =>res.json())
     .then(response =>{
         //almacenamos el valor de la clave en token
-        localStorage.setItem('token',JSON.stringify(response))
-        console.log('Sussess',JSON.stringify(response))
-       
-        /*
-        //recorrer el localStorage
-        for (i=0;i<localStorage.length;i++){
-            let llave=localStorage.key(i);
-            var datos = localStorage.getItem(llave);    
-            //console.log(datos);
-        }
-        console.log(datos);
-               
-        //para acceder a los valores
-        var obj = JSON.parse(datos);
-        var token = obj['token'];
-        console.log(token);
-        */
-       
+        localStorage.setItem('token',JSON.stringify(response));
+        console.log('Sussess',JSON.stringify(response));
+        // getposts();     
+    
+            location.href='index.html';
         //console.log(JSON.parse(localStorage.getItem('token')));
     })       
         .catch(error =>{
