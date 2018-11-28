@@ -131,15 +131,15 @@ function getuserinfo(){
                         <a href="./userinfo.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
                         <h6 class="hcoment">
                                 <p>
-                                Likes: <i class="fa fa-fw fa-star" id="likes">${likes}</i>    
+                                Likes: <i class="fa fa-fw fa-thumbs-o-up" id="likes">${likes}</i>    
                                 | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
                                  </p>
                         </h6>
                         
                         <h5>${body}                           
                         </h5>
-                        <h6><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-star"></i></a>
-                        | Comments: <a href="#">${comments} <i class="fa fa-fw fa-comments"></i></a></p>
+                        <h6><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
+                        | Comments: <a href="#"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
                         </h6>`
                  
             })
