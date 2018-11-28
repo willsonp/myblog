@@ -44,7 +44,7 @@ function getuserinfo(){
             
                 document.getElementById("inf").innerHTML+=`<h1 class="htitulo">Información del Usuario..</h1>                        
                 <h5>ID : ${id}</h5>                        
-                <h5>Nombre: 
+                <h5>Nombre: <i class="fa fa-fw fa-user-plus"></i>
                    ${name}
                    Posted on: ${fecha} 
                 </h5>                                                                                           
@@ -125,21 +125,21 @@ function getuserinfo(){
                         </h4>
                         <h5>${tags}</h5>                        
                         <h5>By: ${userId}
-                           <a href="./userinfo.html">${userName}</a> 
+                           <a href="./userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName}</a> 
                            Posted on: ${fecha}                            
                         </h5>                                                                                           
                         <a href="./userinfo.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
                         <h6 class="hcoment">
                                 <p>
                                 Likes: <i class="fa fa-fw fa-star" id="likes">${likes}</i>    
-                                | Views: <i class="fa fa-fw fa-star" id="vistas">${views}</i>  
+                                | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
                                  </p>
                         </h6>
                         
                         <h5>${body}                           
                         </h5>
                         <h6><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-star"></i></a>
-                        | Comments: <a href="#">${comments} <i class="fa fa-fw fa-star"></i></a></p>
+                        | Comments: <a href="#">${comments} <i class="fa fa-fw fa-comments"></i></a></p>
                         </h6>`
                  
             })
