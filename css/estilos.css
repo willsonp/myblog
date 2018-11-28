@@ -193,9 +193,12 @@ body{
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
   }
-  .htitle{
+  .htitle,#likes{
      color:green;
   }
   .hcoment{
       color: darkorange;
+  }
+  .liked,#vistas{
+      color: blue; 
   }

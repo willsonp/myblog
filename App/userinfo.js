@@ -49,7 +49,7 @@ function getuserinfo(){
                    Posted on: ${fecha} 
                 </h5>                                                                                           
                 <a href="./blog.html"><i class="fa fa-fw fa-envelope">${email}</i></a>                       
-                <h4 class="hcoment">Posts :<i class="fa fa-fw fa-star">${posts}</i></h4>`;
+                <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${posts}</i></h5>`;
             
 
                 document.getElementById("post").innerHTML+=`<h1 class="htitulo">Detalle de los Posts..</h1>`;
@@ -83,7 +83,102 @@ function getuserinfo(){
             throw Error("Error listando post")
         })
  }
+
+ //get posts by user
+ function getpostsbyuser(){
+
+    var usuario = JSON.parse(localStorage.getItem('token'));
+         
+    
+    postListConnectUser(usuario).then(response =>{
+         //una forma
+        //  response.forEach(element => {
+        //      let {title, userEmail}=element;
+        //     document.getElementById("post").innerHTML+=`<h4>${title}</h4>
+        //                                                 <h5>${userEmail}</h5>`;
+        //otra forma REACT
+
+/*
+        {body,
+        comments,
+        createdAt,
+        id,
+        liked,
+        likes,
+        tags,
+        title,
+        userEmail,
+        userId,
+        userName,
+        views}
+
+*/
+
+
+            let obj=Object.keys(response).map(element=>{
+
+                let {body,comments,createdAt,id,liked,likes,tags,title,userEmail,userId,userName,views}=response[element];
+                let fecha = new Date(createdAt).toLocaleDateString('es-RD');
+
+                return `<h1 class="htitulo">Detalle de Posts..</h1>
+                        <h4 class="htitle"> Post ID : ${id},  ${title}  <a href="./blog.html"> <i class="fa fa-fw fa-pencil"></i> </a>                          
+                        </h4>
+                        <h5>${tags}</h5>                        
+                        <h5>By: ${userId}
+                           <a href="./userinfo.html">${userName}</a> 
+                           Posted on: ${fecha}                            
+                        </h5>                                                                                           
+                        <a href="./userinfo.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
+                        <h6 class="hcoment">
+                                <p>
+                                Likes: <i class="fa fa-fw fa-star" id="likes">${likes}</i>    
+                                | Views: <i class="fa fa-fw fa-star" id="vistas">${views}</i>  
+                                 </p>
+                        </h6>
+                        
+                        <h5>${body}
+                           <p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-star"></i></a>
+                           | Comments: <a href="#">${comments} <i class="fa fa-fw fa-star"></i></a></p>
+                        </h5>
+                        `
+                 
+            })
+           
+
+            document.getElementById("post").innerHTML=obj;
+        
+           console.log('Sussess',JSON.stringify(response));
+         
+     })       
+         .catch(error =>{
+             console.log('Error',error)
+            // location.href="./registrarse.html";
+             
+         });
+ }
+
+
+ let postListConnectUser=({token})=>{
+     return  fetch("http://68.183.27.173:8080/post?iserid=1",{
+        method:'GET', //or 'PUT'
+      //  body: JSON.stringify(data),
+        headers:{
+            'Content-Type':'Application/json',
+            'Authorization':`Bearer ${token}`
+        }
+        
+    }).then(
+        res =>{
+            if(res.ok){
+                return res.json();
+            }
+            throw Error("Error listando post")
+        })
+ }
+
+
  //EQUIVALENETE A DOCUMENT READY
  (function(){
     getuserinfo();
+    getpostsbyuser();
  })();
