@@ -98,7 +98,7 @@ function getuserinfo(){
         //                                                 <h5>${userEmail}</h5>`;
         //otra forma REACT
 
-/*
+/* Fields Response
         {body,
         comments,
         createdAt,
@@ -136,11 +136,11 @@ function getuserinfo(){
                                  </p>
                         </h6>
                         
-                        <h5>${body}
-                           <p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-star"></i></a>
-                           | Comments: <a href="#">${comments} <i class="fa fa-fw fa-star"></i></a></p>
+                        <h5>${body}                           
                         </h5>
-                        `
+                        <h6><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-star"></i></a>
+                        | Comments: <a href="#">${comments} <i class="fa fa-fw fa-star"></i></a></p>
+                        </h6>`
                  
             })
            
