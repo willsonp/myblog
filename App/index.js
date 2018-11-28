@@ -32,10 +32,10 @@ function getposts(){
                         </h4>
                         <h5>${tags}</h5>                        
                         <h5>By: 
-                           <a href="./registrarse.html">${userName}</a> 
+                           <a href="./userinfo.html">${userName}</a> 
                            Posted on: ${fecha} 
                         </h5>                                                                                           
-                        <a href="./registrarse.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
+                        <a href="./userinfo.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
                         <h4 class="hcoment"><i class="fa fa-fw fa-star">${comments}</i></h4>
                         <h5>${body}</h5>
                         `
