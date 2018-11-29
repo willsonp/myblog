@@ -12,12 +12,6 @@ function getuserinfo(){
 
     var userinfo = JSON.parse(localStorage.getItem('token'));       
     var userId=JSON.parse(localStorage.getItem('id'));       
-     postListConnect(userinfo,userId).then(response =>{
-         //una forma
-        //  response.forEach(element => {
-        //      let {title, userEmail}=element;
-        //     document.getElementById("post").innerHTML+=`<h4>${title}</h4>
-        //                                                 <h5>${userEmail}</h5>`;
         
         //otra forma REACT
           
@@ -91,29 +85,6 @@ function getuserinfo(){
     var userId=JSON.parse(localStorage.getItem('id'));            
     
     postListConnectUser(usuario,userId).then(response =>{
-         //una forma
-        //  response.forEach(element => {
-        //      let {title, userEmail}=element;
-        //     document.getElementById("post").innerHTML+=`<h4>${title}</h4>
-        //                                                 <h5>${userEmail}</h5>`;
-        //otra forma REACT
-
-/* Fields Response
-        {body,
-        comments,
-        createdAt,
-        id,
-        liked,
-        likes,
-        tags,
-        title,
-        userEmail,
-        userId,
-        userName,
-        views}
-
-*/
-
 
             let obj=Object.keys(response).map(element=>{
 
