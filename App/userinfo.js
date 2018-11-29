@@ -88,9 +88,9 @@ function getuserinfo(){
  function getpostsbyuser(){
 
     var usuario = JSON.parse(localStorage.getItem('token'));
-         
+    var userId=JSON.parse(localStorage.getItem('id'));            
     
-    postListConnectUser(usuario).then(response =>{
+    postListConnectUser(usuario,userId).then(response =>{
          //una forma
         //  response.forEach(element => {
         //      let {title, userEmail}=element;
@@ -158,8 +158,8 @@ function getuserinfo(){
  }
 
 
- let postListConnectUser=({token})=>{
-     return  fetch("http://68.183.27.173:8080/post?userid=1",{
+ let postListConnectUser=({token,id})=>{
+     return  fetch("http://68.183.27.173:8080/post?userId="+id,{
         method:'GET', //or 'PUT'
       //  body: JSON.stringify(data),
         headers:{
