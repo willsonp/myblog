@@ -12,27 +12,9 @@ function getuserinfo(){
 
     var userinfo = JSON.parse(localStorage.getItem('token'));       
     var userId=JSON.parse(localStorage.getItem('id'));       
-        
-        //otra forma REACT
-          
-           /*   let obj=Object.keys(response).map(element=>{
-
-                let {createdAt, email,id,name,posts}=response[element];
-                let fecha = new Date(createdAt).toLocaleDateString('es-RD');
-                
-
-                return `<h1 class="htitulo">Información del Usuario..</h1>                        
-                        <h5>ID : ${id}</h5>                        
-                        <h5>Nombre: 
-                           ${name}
-                           Posted on: ${fecha} 
-                        </h5>                                                                                           
-                        <a href="./registrarse.html"><i class="fa fa-fw fa-envelope">${email}</i></a>                       
-                        <h4 class="hcoment"><i class="fa fa-fw fa-star">${posts}</i></h4>`                     
-                        
+     
+    postListConnect(userinfo,userId).then(response =>{
                  
-            })*/
-          
                 let {createdAt, email,id,name,posts}=response;
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
             
@@ -110,7 +92,7 @@ function getuserinfo(){
                         <h5>${body}                           
                         </h5>
                         <h6><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
-                        | Comments: <a href="#"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
+                        | Comments: <a href="./blog.html"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
                         </h6>`
                  
             })
