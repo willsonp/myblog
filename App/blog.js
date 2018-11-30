@@ -38,7 +38,7 @@ function btnsub(){
         //para acceder a los valores gurdados en el localStorage
         var usuario = JSON.parse(localStorage.getItem('token'));
         console.log(usuario);
-
+        
         
             
         fetch("http://68.183.27.173:8080/post",{
@@ -52,7 +52,10 @@ function btnsub(){
         .then(response =>{
 
             console.log('Sussess',JSON.stringify(response));   
-                                
+            
+            location.href='../pages/userinfo.html';
+            
+            
         }).catch(error =>{
             console.log('Error',error);           
 
