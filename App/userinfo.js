@@ -19,7 +19,6 @@ function getuserinfo(){
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
             
                 document.getElementById("inf").innerHTML+=`<h1 class="htitulo">Información del Usuario..</h1>                        
-                <h5>ID : ${id}</h5>                        
                 <h5>Nombre: <a href="../pages/blog.html"> <i class="fa fa-fw fa-user-plus"></i>
                    ${name} </a>
                    Posted on: ${fecha} 
@@ -73,27 +72,26 @@ function getuserinfo(){
                 let {body,comments,createdAt,id,liked,likes,tags,title,userEmail,userId,userName,views}=response[element];
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
 
-                return `<h1 class="htitulo">Detalle de Posts..</h1>
-                        <h4 class="htitle"> Post ID : ${id},  ${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a>                          
-                        </h4>
-                        <h5>${tags}</h5>                        
-                        <h5>By: ${userId}
+                return `<h1 class="htitulo"> ${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a></h1>
+                        <h4>${tags}</h4>                        
+                        <h4>By: 
                            <a href="../pages/blog.html"><i class="fa fa-fw fa-user-o"></i> ${userName}</a> 
-                           Posted on: ${fecha}                            
-                        </h5>                                                                                           
-                        <a href="../pages/blog.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
-                        <h6 class="hcoment">
+                           <a href="../pages/blog.html">(<i class="fa fa-fw fa-envelope">${userEmail})</i></a>                           
+                        </h4>                                                                                           
+                       
+                        Posted on: ${fecha}                       
+                        <h5 class="hcoment">
                                 <p>
                                 Likes: <i class="fa fa-fw fa-thumbs-o-up" id="likes">${likes}</i>    
                                 | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
                                  </p>
-                        </h6>
+                        </h5>
                         
                         <h5>${body}                           
                         </h5>
-                        <h6><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
+                        <h5><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
                         | Comments: <a href="../pages/blog.html"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
-                        </h6>`
+                        </h5>`
                  
             })
            
