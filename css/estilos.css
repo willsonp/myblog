@@ -53,6 +53,7 @@ body{
     padding: 5px 20px;
     cursor: pointer;    
     border-radius: 35px; 
+    text-align: center;
 }
 .contenedor_img {
     text-align: center;
@@ -145,6 +146,16 @@ body{
     background-color: #333; 
     color: white;
     text-align: center;}
+.contenedor{
+        width: 900px;
+        max-width: 100%;
+        margin: auto;   
+        margin-top: 40px;
+        padding: 20px;
+        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+        position: relative;   
+        
+    }   
 .blog,.post{
         width: 700px;
         max-width: 100%;

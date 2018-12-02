@@ -8,6 +8,7 @@
 //     console.log('Server port on: 3000')
 // });
 
+
     
 function getposts(){
 
@@ -27,21 +28,101 @@ function getposts(){
                 let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body}=response[element];
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
 
-                return `<h1 class="htitulo">${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a> </h1>
+               /* return `<h1 class="htitulo">${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a> </h1>
                         <h4>${tags}</h4>                        
-                        <h5>By: 
-                           <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i>${userName}</a> 
+                        <h5 id="test">By: 
+                           <a  id="test" href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i>${userName}</a> 
                            Posted on: ${fecha} 
                         </h5>                                                                                           
-                        <a href="../pages/userinfo.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
+                        <a  id="test" href="../pages/userinfo.html"><i class="fa fa-fw fa-envelope">${userEmail}</i></a>                       
                         <h4 class="hcoment"><i class="fa fa-fw fa-star">${comments}</i></h4>
                         <h5>${body}</h5>
                         `
+                        */
+
+                   return `<div class="row">
+
+                   <!-- Post Content Column -->
+                   <div class="col-lg-8">
+               
+                     <!-- Title -->
+                     <h1 class="mt-4">${title} <a href="#"><i class="fa fa-fw fa-pencil"></i> </a></h1>
+               
+                     <!-- Author -->
+                     <p class="lead" id="userId">
+                       by
+                       <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (${userEmail})</a>
+                     </p>
+               
+                     <hr>
+               
+                     <!-- Date/Time -->
+                     <p>Posted on ${fecha} </p>
+               
+                     
+                     <!-- Post Content -->
+               
+                     <p>${body}
+                     
+                     <blockquote class="blockquote">
+                       <p class="mb-0"><i class="fa fa-fw fa-star"></i>${comments}</p>
+                     </blockquote>
+                     <hr>
+                    </div>
+                   
+
+                   <!-- Sidebar Widgets Column -->
+                   <div class="col-md-4">
+               
+                     <!-- Search Widget -->
+                     <div class="card my-4">
+                       <h5 class="card-header">Buscar</h5>
+                       <div class="card-body">
+                         <div class="input-group">
+                           <input type="text" class="form-control" placeholder="Buscar por...">
+                           <span class="input-group-btn">
+                             <button class="btn btn-secondary" type="button">Go!</button>
+                           </span>
+                         </div>
+                       </div>
+                     </div>
+               
+                     <!-- Categories Widget -->
+                     <div class="card my-4">
+                       <h5 class="card-header">Categorias</h5>
+                       <div class="card-body">
+                         <div class="row">
+                           <div class="col-lg-6">
+                             <ul class="list-unstyled mb-0">
+                                <li>
+                                 <a href="#">HTML</a>
+                               </li>                               
+                             </ul>
+                           </div>
+                           <div class="col-lg-6">
+                             <ul class="list-unstyled mb-0">
+                               <li>
+                                 <a href="#">JavaScript</a>
+                               </li>
+                               <li>
+                                 <a href="#">CSS</a>
+                               </li>
+                             </ul>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+               
+                 </div>
+                 <!-- /.row -->
+               
+                   `     
                  
             })
            
 
-            document.getElementById("post").innerHTML=obj;
+            document.getElementById("contenedor").innerHTML=obj;
         
            console.log('Sussess',JSON.stringify(response));
          
@@ -71,14 +152,16 @@ function getposts(){
             throw Error("Error listando post")
         })
  }
- 
+ $(document).ready(function(){
+    $("#userId").click(function(){
+      alert($("#userId").text());
+    });
+  });
+
  //EQUIVALENETE A DOCUMENT READY
  (function(){
-    getposts();
+    getposts();    
     
  })();
-/*
- function MostrarValor(elemento){
-    console.log($(elemento).attr("value"))
-}
-*/
+
+ 

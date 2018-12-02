@@ -18,16 +18,17 @@ function getuserinfo(){
                 let {createdAt, email,id,name,posts}=response;
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
             
-                document.getElementById("inf").innerHTML+=`<h1 class="htitulo">Información del Usuario..</h1>                        
-                <h5>Nombre: <a href="../pages/blog.html"> <i class="fa fa-fw fa-user-plus"></i>
-                   ${name} </a>
-                   Posted on: ${fecha} 
+                document.getElementById("contenedor").innerHTML+=`<h1 class="htitulo">Información del Usuario..</h1>                        
+                <h5>Nombre: <a href="../pages/comentarios.html"> <i class="fa fa-fw fa-user-plus"></i>
+                   ${name} (<i class="fa fa-fw fa-envelope">${email})</i> </a>
+                   
                 </h5>                                                                                           
-                <a href="../pages/blog.html"><i class="fa fa-fw fa-envelope">${email}</i></a>                       
-                <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${posts}</i></h5>`;
+                <p >Created on: ${fecha} </p>                       
+                <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${posts}</i></h5>
+                <hr>`;
             
 
-                document.getElementById("post").innerHTML+=`<h1 class="htitulo">Detalle de los Posts..</h1>`;
+               // document.getElementById("post").innerHTML+=`<h1 class="htitulo">Detalle de los Posts..</h1>`;
           
         
            console.log('Sussess',JSON.stringify(response));
@@ -71,7 +72,8 @@ function getuserinfo(){
 
                 let {body,comments,createdAt,id,liked,likes,tags,title,userEmail,userId,userName,views}=response[element];
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
-
+                let likedon = (liked);
+               /*
                 return `<h1 class="htitulo"> ${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a></h1>
                         <h4>${tags}</h4>                        
                         <h4>By: 
@@ -90,13 +92,121 @@ function getuserinfo(){
                         <h5>${body}                           
                         </h5>
                         <h5><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
-                        | Comments: <a href="../pages/blog.html"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
+                        | Comments: <a href="../pages/comentarios.html"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
                         </h5>`
-                 
+                 */
+
+                return `    <!-- Page Content -->
+                    <div class="row">
+            
+                    <!-- Post Content Column -->
+                    <div class="col-lg-8">
+            
+                      <!-- Title -->
+                      <h1 class="mt-4">${title} <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a></h1>
+            
+                      <!-- Author -->
+                      <p class="lead">
+                      by
+                      <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (<i class="fa fa-fw fa-envelope"></i>${userEmail})</a>
+                      </p>
+                        
+                      <hr>
+            
+                      <!-- Date/Time -->
+                      <p>Posted on ${fecha} </p>
+                      <!--<i class="fa fa-fw fa-thumbs-o-up">-->
+                      <p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
+                      <!-- Post Content -->
+                      <p>${body}</p>
+                      <blockquote class="blockquote">
+                        <p class="mb-0"><i class="fa fa-fw fa-comments"> <a href="../pages/comentarios.html"> </i>Comments:${comments} </a></p>
+                      </blockquote>
+            
+                      <p>
+                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" id="likes">${likes}</i></a>    
+                      | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
+                       </p>
+
+                      <hr>
+            
+                      <!-- Comments Form -->
+                      <div class="card my-4">
+                        <h5 class="card-header">Deja tu comentario</h5>
+                        <div class="card-body">
+                          <form>
+                            <div class="form-group">
+                              <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                          </form>
+                        </div>
+                      </div>
+            
+                      
+                      </div>
+            
+                    <!-- Sidebar Widgets Column -->
+                    <div class="col-md-4">
+            
+                      <!-- Search Widget -->
+                      <div class="card my-4">
+                        <h5 class="card-header">Buscar</h5>
+                        <div class="card-body">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar por...">
+                            <span class="input-group-btn">
+                              <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <!-- Categories Widget -->
+                      <div class="card my-4">
+                        <h5 class="card-header">Categorias</h5>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <ul class="list-unstyled mb-0">
+                                <li>
+                                  <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                  <a href="#">HTML</a>
+                                </li>
+                                <li>
+                                  <a href="#">Freebies</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-6">
+                              <ul class="list-unstyled mb-0">
+                                <li>
+                                  <a href="#">JavaScript</a>
+                                </li>
+                                <li>
+                                  <a href="#">CSS</a>
+                                </li>
+                                <li>
+                                  <a href="#">Tutorials</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+                  <!-- /.row -->
+                `
+
             })
            
 
-            document.getElementById("post").innerHTML=obj;
+            document.getElementById("contenedor").innerHTML+=obj;
         
            console.log('Sussess',JSON.stringify(response));
          
@@ -133,3 +243,5 @@ function getuserinfo(){
     getuserinfo();
     getpostsbyuser();
  })();
+
+ 
