@@ -13,9 +13,9 @@
 function getposts(){
 
     var usuario = JSON.parse(localStorage.getItem('token'));
-         
-    
-     postListConnect(usuario).then(response =>{
+    var userId = JSON.parse(localStorage.getItem('id'));
+   
+    postListConnect(usuario,userId).then(response =>{
          //una forma
         //  response.forEach(element => {
         //      let {title, userEmail}=element;
@@ -27,7 +27,13 @@ function getposts(){
 
                 let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body}=response[element];
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
-
+                let categoria= [tags];
+                let mostrarcat=[];
+                  //para mostrar las categorias
+                  for (i=0;i<categoria.length;i++){
+                   // console.log(categoria[i]);
+                    mostrarcat+=`<ul class="list-unstyled mb-0"><li><a href="#">`+(categoria[i])+`</a></li></ul>`;   
+                  }
                /* return `<h1 class="htitulo">${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a> </h1>
                         <h4>${tags}</h4>                        
                         <h5 id="test">By: 
@@ -51,7 +57,7 @@ function getposts(){
                      <!-- Author -->
                      <p class="lead" id="userId">
                        by
-                       <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (${userEmail})</a>
+                       <a href="../pages/userinfo.html?id=${userEmail}"><i class="fa fa-fw fa-user-o"></i> ${userName} (${userEmail})</a>
                      </p>
                
                      <hr>
@@ -93,22 +99,10 @@ function getposts(){
                        <div class="card-body">
                          <div class="row">
                            <div class="col-lg-6">
-                             <ul class="list-unstyled mb-0">
-                                <li>
-                                 <a href="#">HTML</a>
-                               </li>                               
-                             </ul>
-                           </div>
-                           <div class="col-lg-6">
-                             <ul class="list-unstyled mb-0">
-                               <li>
-                                 <a href="#">JavaScript</a>
-                               </li>
-                               <li>
-                                 <a href="#">CSS</a>
-                               </li>
-                             </ul>
-                           </div>
+
+                             ${mostrarcat}               
+                             
+                           </div>                           
                          </div>
                        </div>
                      </div>
@@ -136,7 +130,7 @@ function getposts(){
 
 
  let postListConnect=({token})=>{
-     return  fetch("http://68.183.27.173:8080/post",{
+     return  fetch("http://68.183.27.173:8080/post/",{
         method:'GET', //or 'PUT'
       //  body: JSON.stringify(data),
         headers:{
@@ -152,16 +146,12 @@ function getposts(){
             throw Error("Error listando post")
         })
  }
- $(document).ready(function(){
-    $("#userId").click(function(){
-      alert($("#userId").text());
-    });
-  });
 
+ 
  //EQUIVALENETE A DOCUMENT READY
  (function(){
-    getposts();    
-    
+    getposts();   
+
  })();
 
  

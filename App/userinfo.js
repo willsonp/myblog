@@ -10,10 +10,18 @@
   
 function getuserinfo(){
 
-    var userinfo = JSON.parse(localStorage.getItem('token'));       
-    var userId=JSON.parse(localStorage.getItem('id'));       
-     
-    postListConnect(userinfo,userId).then(response =>{
+    var userinfo = JSON.parse(localStorage.getItem('token'));  
+
+      
+    var idloc = location.search.substr(1).split("=")[1];
+
+    //pasarle el email a la funcion
+    //getuserid(idloc);
+
+    //var userget = JSON.parse(localStorage.getItem('useridemail'));
+
+   
+    postListConnect(userinfo,getuserid(idloc)).then(response =>{
                  
                 let {createdAt, email,id,name,posts}=response;
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
@@ -31,7 +39,7 @@ function getuserinfo(){
                // document.getElementById("post").innerHTML+=`<h1 class="htitulo">Detalle de los Posts..</h1>`;
           
         
-           console.log('Sussess',JSON.stringify(response));
+              console.log('Sussess',JSON.stringify(response));
          
      })       
          .catch(error =>{
@@ -41,6 +49,33 @@ function getuserinfo(){
          });
  }
 
+
+ function getuserid(pemail){
+
+  var userinfo = JSON.parse(localStorage.getItem('token'));    
+  let valor = 0;
+   
+  valor = postListConnectUserEmail(userinfo).then(response =>{
+               
+              let usuarios = {createdAt, email,id,name,posts}=response;
+           
+              let obj = usuarios.find(o => o.email === pemail);
+
+              console.log(obj.id);   
+              
+              //alert("Esto es lo que me devuelve la fucion: "+obj.id);          
+
+              return   obj.id;
+             
+   })       
+       .catch(error =>{
+           console.log('Error',error)
+          // location.href="./registrarse.html";
+          // return 0;
+       });
+
+     return valor;
+}
 
  let postListConnect=({token,id})=>{
      return  fetch("http://68.183.27.173:8080/users/"+id,{
@@ -60,20 +95,51 @@ function getuserinfo(){
         })
  }
 
+ let postListConnectUserEmail=({token})=>{
+  return  fetch("http://68.183.27.173:8080/users/",{
+     method:'GET', //or 'PUT'
+   //  body: JSON.stringify(data),
+     headers:{
+         'Content-Type':'Application/json',
+         'Authorization':`Bearer ${token}`
+     }
+     
+ }).then(
+     res =>{
+         if(res.ok){
+             return res.json();
+         }
+         throw Error("Error listando post")
+     })
+}
+
+
  //get posts by user
  function getpostsbyuser(){
 
     var usuario = JSON.parse(localStorage.getItem('token'));
-    var userId=JSON.parse(localStorage.getItem('id'));            
+    var idloc = location.search.substr(1).split("=")[1];
+    //pasarle el email a la funcion
+    //var em = getuserid(idloc);
+   // var userget = JSON.parse(localStorage.getItem('useridemail'));
     
-    postListConnectUser(usuario,userId).then(response =>{
+    postListConnectUser(usuario,getuserid(idloc)).then(response =>{
 
             let obj=Object.keys(response).map(element=>{
 
-                let {body,comments,createdAt,id,liked,likes,tags,title,userEmail,userId,userName,views}=response[element];
+                let  {body,comments,createdAt,id,liked,likes,tags,title,userEmail,userId,userName,views}=response[element];
+              
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
-                let likedon = (liked);
-               /*
+                
+                let categoria= [tags];
+                let mostrarcat=[];
+                  //para mostrar las categorias
+                  for (i=0;i<categoria.length;i++){
+                   // console.log(categoria[i]);
+                    mostrarcat+=`<ul class="list-unstyled mb-0"><li><a href="#">`+(categoria[i])+`</a></li></ul>`;   
+                  } 
+                  
+                  /*
                 return `<h1 class="htitulo"> ${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a></h1>
                         <h4>${tags}</h4>                        
                         <h4>By: 
@@ -96,7 +162,7 @@ function getuserinfo(){
                         </h5>`
                  */
 
-                return `    <!-- Page Content -->
+                return `<!-- Page Content -->
                     <div class="row">
             
                     <!-- Post Content Column -->
@@ -108,7 +174,7 @@ function getuserinfo(){
                       <!-- Author -->
                       <p class="lead">
                       by
-                      <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (<i class="fa fa-fw fa-envelope"></i>${userEmail})</a>
+                      <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (<i class="fa fa-fw fa-envelope"></i>${userEmail}</a>
                       </p>
                         
                       <hr>
@@ -168,31 +234,9 @@ function getuserinfo(){
                         <div class="card-body">
                           <div class="row">
                             <div class="col-lg-6">
-                              <ul class="list-unstyled mb-0">
-                                <li>
-                                  <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                  <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                  <a href="#">Freebies</a>
-                                </li>
-                              </ul>
+                              ${mostrarcat}
                             </div>
-                            <div class="col-lg-6">
-                              <ul class="list-unstyled mb-0">
-                                <li>
-                                  <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                  <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                  <a href="#">Tutorials</a>
-                                </li>
-                              </ul>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>
@@ -202,7 +246,7 @@ function getuserinfo(){
                   </div>
                   <!-- /.row -->
                 `
-
+              
             })
            
 
@@ -239,7 +283,7 @@ function getuserinfo(){
 
 
  //EQUIVALENETE A DOCUMENT READY
- (function(){
+ (function(){   
     getuserinfo();
     getpostsbyuser();
  })();
