@@ -118,6 +118,7 @@ function getuserinfo(){
  function getpostsbyuser(){
 
     var usuario = JSON.parse(localStorage.getItem('token'));
+    
     var idloc = location.search.substr(1).split("=")[1];
     //pasarle el email a la funcion
     //var em = getuserid(idloc);
@@ -174,7 +175,7 @@ function getuserinfo(){
                       <!-- Author -->
                       <p class="lead">
                       by
-                      <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (<i class="fa fa-fw fa-envelope"></i>${userEmail}</a>
+                      <a href="../pages/userinfo.html"><i class="fa fa-fw fa-user-o"></i> ${userName} (<i class="fa fa-fw fa-envelope"></i>${userEmail})</a>
                       </p>
                         
                       <hr>
