@@ -25,7 +25,7 @@ function getposts(){
 
             let obj=Object.keys(response).map(element=>{
 
-                let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body}=response[element];
+                let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body,userId}=response[element];
                 let fecha = new Date(createdAt).toLocaleDateString('es-RD');
                 let categoria= [tags];
                 let mostrarcat=[];
@@ -57,7 +57,7 @@ function getposts(){
                      <!-- Author -->
                      <p class="lead" id="userId">
                        by
-                       <a href="../pages/userinfo.html?id=${userEmail}"><i class="fa fa-fw fa-user-o"></i> ${userName} (${userEmail})</a>
+                       <a href="../pages/userinfo.html?id=${userId}"><i class="fa fa-fw fa-user-o"></i> ${userName} (${userEmail})</a>
                      </p>
                
                      <hr>
@@ -130,7 +130,7 @@ function getposts(){
 
 
  let postListConnect=({token})=>{
-     return  fetch("http://68.183.27.173:8080/post/",{
+     return  fetch("http://68.183.27.173:8080/post",{
         method:'GET', //or 'PUT'
       //  body: JSON.stringify(data),
         headers:{
