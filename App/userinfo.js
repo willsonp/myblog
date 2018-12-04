@@ -125,11 +125,6 @@ function getuserinfo(){
  function getpostsbyuser(){
 
     var usuario = JSON.parse(localStorage.getItem('token'));
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> b340793d642cdff7032300ce50341ed63f3d08ff
     var idloc = location.search.substr(1).split("=")[1];
     //pasarle el email a la funcion
     //var em = getuserid(idloc);
