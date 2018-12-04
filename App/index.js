@@ -130,7 +130,7 @@ function getposts(){
 
 
  let postListConnect=({token})=>{
-     return  fetch("http://68.183.27.173:8080/post",{
+     return  fetch("http://68.183.27.173:8080/post/",{
         method:'GET', //or 'PUT'
       //  body: JSON.stringify(data),
         headers:{

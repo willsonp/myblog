@@ -190,7 +190,7 @@ function getuserinfo(){
                       <!-- Date/Time -->
                       <p>Posted on ${fecha} </p>
                       <!--<i class="fa fa-fw fa-thumbs-o-up">-->
-                      <p class="liked" id="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up" Onclick="getuserliked()"></i></a>
+                      <p class="liked" id="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up" Onclick="getuserliked(${id},${liked})"></i></a>
                       <!-- Post Content -->
                       <p>${body}</p>
                       <blockquote class="blockquote">
@@ -198,7 +198,7 @@ function getuserinfo(){
                       </blockquote>
             
                       <p>
-                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" id="likes">${likes}</i></a>    
+                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" Onclick="getuserliked(${id},${liked})">${likes}</i></a>    
                       | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
                        </p>
 
@@ -292,42 +292,15 @@ function getuserinfo(){
  }
 
  
- //Funcion para Hacerle Likes
- function getuserliked(){
+ //Funcion para Hacerle Liked
+ function getuserliked(id,liked){
 
   var userinfo = JSON.parse(localStorage.getItem('token'));  
-
-    
-  //var idloc = location.search.substr(1).split("=")[1];
-
-  //pasarle el email a la funcion
- //  alert("ID LOC"+idloc);
-
-  //var userget = JSON.parse(localStorage.getItem('useridemail'));
-
  
-  postListConnectUserLiked(userinfo,id).then(response =>{
-               
-         /*
-              let {createdAt, email,id,name,posts}=response;
-              let fecha = new Date(createdAt).toLocaleDateString('es-RD');
-          
-              document.getElementById("contenedor").innerHTML+=`<h1 class="htitulo">Información del Usuario..</h1>                        
-              <h5>Nombre: <a href="../pages/comentarios.html"> <i class="fa fa-fw fa-user-plus"></i>
-                 ${name} (<i class="fa fa-fw fa-envelope">${email})</i> </a>
-                 
-              </h5>                                                                                           
-              <p >Created on: ${fecha} </p>                       
-              <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${posts}</i></h5>
-              <hr>`;
-          
-
-             // document.getElementById("post").innerHTML+=`<h1 class="htitulo">Detalle de los Posts..</h1>`;
-        
-          */
-
-            console.log('Sussess',JSON.stringify(response));
-       
+  postListConnectUserLiked(userinfo,id,liked).then(response =>{
+ 
+       console.log('Muy Bien');
+    
    })       
        .catch(error =>{
            console.log('Error',error)
@@ -336,7 +309,7 @@ function getuserinfo(){
        });
 }
 
- let postListConnectUserLiked=({token},id)=>{
+ let postListConnectUserLiked=({token},id,liked)=>{
   console.log("token ",token, " PostID: ",id);
   
    return  fetch(`http://68.183.27.173:8080/post/${id}/like`,{
@@ -349,13 +322,14 @@ function getuserinfo(){
       
   }).then(
       res =>{
-          if(res.ok){
-              return res.json();
-          }
-          throw Error("Error listando post")
+         // if(res.ok){
+             // return res.json();
+             console.log("Liked");
+         // }
+          //throw Error("Error listando post")
       })
 }
-// Hasta Aqui los Likes
+// Hasta Aqui los Liked
 
  //EQUIVALENETE A DOCUMENT READY
  (function(){   
