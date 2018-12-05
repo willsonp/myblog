@@ -147,9 +147,19 @@ function getposts(){
         })
  }
 
+ function redirectLogin(){
+  var token = JSON.parse(localStorage.getItem('token'));
+  console.log({token}); 
+  if (token==null){
+    location.href="../pages/login.html";
+    return   
+  }
+ 
+ }
  
  //EQUIVALENETE A DOCUMENT READY
  (function(){
+    redirectLogin();
     getposts();   
 
  })();
