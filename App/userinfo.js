@@ -196,7 +196,7 @@ function getuserinfo(){
                         <p class="mb-0"><i class="fa fa-fw fa-comments"> <a href="../pages/comentarios.html"> </i>Comments:${comments} </a></p>
                       </blockquote>
             
-                      <p>
+                      <p> 
                       Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" Onclick="getuserliked(${id},${liked})">${likes}</i></a>    
                       | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
                        </p>
@@ -330,8 +330,63 @@ function getuserinfo(){
 }
 // Hasta Aqui los Liked
 
+//WEB Socket
+var token = JSON.parse(localStorage.getItem('token'));
+
+let websocket = new WebSocket('ws://68.183.27.173:8080/?token='+token);
+
+websocket.onopen =function(evt){
+  console.log(evt);
+}
+
+websocket.onclose =function(evt){
+  console.log(evt);
+}
+
+websocket.onmessage =function(evt){
+  console.log(evt);
+}
+websocket.onoerror =function(evt){
+  console.log(evt);
+}
+
+var liked = true;
+function websocketConnect(token){
+    let websocket = new WebSocket('ws://68.183.27.173:8080/?token='+token);
+
+  websocket.onopen =function(evt){
+    console.log(evt);
+  }
+
+  websocket.onclose =function(evt){
+    console.log(evt);
+  }
+
+  websocket.onmessage =function(evt){
+    //TODO nombrar los span con los respectivos nombres
+    var data=JSON.parse(evt.data);
+    console.log(evt);
+    switch (data.type){
+      case "likes": $('#articulo-likes-'+data.postId).text(data.likes);
+      break;
+      
+      case "view-post": $('#articulo-views-'+data.postId).text(data.views);
+      break;
+    }
+
+
+  }
+  websocket.onoerror =function(evt){
+     console.log(evt);   
+  }
+  
+}
+
+//WebSocket
+
+
  //EQUIVALENETE A DOCUMENT READY
- (function(){   
+ (function(){     
     getuserinfo();
     getpostsbyuser();
  })();
