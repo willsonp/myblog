@@ -197,7 +197,7 @@ function getuserinfo(){
                       </blockquote>
             
                       <p> 
-                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" Onclick="getuserliked(${id},${liked})">${likes}</i></a>    
+                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" id="likes" Onclick="getuserliked(${id},${liked})">${likes}</i></a>    
                       | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
                        </p>
 
@@ -331,9 +331,10 @@ function getuserinfo(){
 // Hasta Aqui los Liked
 
 //WEB Socket
-var token = JSON.parse(localStorage.getItem('token'));
+var {token} = JSON.parse(localStorage.getItem('token'));
+console.log("TOKEN :"+token);
 
-let websocket = new WebSocket('ws://68.183.27.173:8080/?token='+token);
+let websocket = new WebSocket(`ws://68.183.27.173:8080/?token=${token}`);
 
 websocket.onopen =function(evt){
   console.log(evt);
@@ -352,7 +353,7 @@ websocket.onoerror =function(evt){
 
 var liked = true;
 function websocketConnect(token){
-    let websocket = new WebSocket('ws://68.183.27.173:8080/?token='+token);
+    let websocket = new WebSocket(`ws://68.183.27.173:8080/?token=${token}`);
 
   websocket.onopen =function(evt){
     console.log(evt);
@@ -367,10 +368,10 @@ function websocketConnect(token){
     var data=JSON.parse(evt.data);
     console.log(evt);
     switch (data.type){
-      case "likes": $('#articulo-likes-'+data.postId).text(data.likes);
+      case "likes": $('#likes'+data.postId).text(data.likes);
       break;
       
-      case "view-post": $('#articulo-views-'+data.postId).text(data.views);
+      case "view-post": $('#vistas'+data.postId).text(data.views);
       break;
     }
 
@@ -387,6 +388,7 @@ function websocketConnect(token){
 
  //EQUIVALENETE A DOCUMENT READY
  (function(){     
+   // websocketConnect(token);
     getuserinfo();
     getpostsbyuser();
  })();
