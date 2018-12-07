@@ -196,8 +196,8 @@ function getuserinfo(){
                         <p class="mb-0"><i class="fa fa-fw fa-comments"> <a href="../pages/comentarios.html"> </i>Comments:${comments} </a></p>
                       </blockquote>
             
-                      <p id="likes"> <span>
-                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" id="lik" Onclick="getuserliked(${id},${likes})">${likes}</i></a>    
+                      <p > <span >
+                      Likes:<a href="#" <i class="fa fa-fw fa-thumbs-o-up" id="likes" Onclick="getuserliked(${id},${likes})">${likes}</i></a>    
                       | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i> </span>
                        </p>
 
