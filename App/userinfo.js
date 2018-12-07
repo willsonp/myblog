@@ -368,9 +368,12 @@ function websocketConnect(token){
     var data=JSON.parse(evt.data);
     console.log(evt);
     switch (data.type){
+      case "like": $('#liked'+data.postId).text(data.likes);
+      break;
+     
       case "likes": $('#likes'+data.postId).text(data.likes);
       break;
-      
+     
       case "view-post": $('#vistas'+data.postId).text(data.views);
       break;
     }
