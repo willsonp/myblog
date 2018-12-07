@@ -367,6 +367,7 @@ function websocketConnect(token){
     //TODO nombrar los span con los respectivos nombres
     var data=JSON.parse(evt.data);
     console.log(evt);
+    
     switch (data.type){
       case "like": $('#liked'+data.postId).text(data.likes);
       break;
@@ -377,7 +378,7 @@ function websocketConnect(token){
       case "view-post": $('#vistas'+data.postId).text(data.views);
       break;
     }
-
+    console.log(data);
 
   }
   websocket.onoerror =function(evt){
