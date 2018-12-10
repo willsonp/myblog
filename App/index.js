@@ -157,6 +157,68 @@ function getposts(){
  
  }
 
+
+//WEB Socket
+var {token} = JSON.parse(localStorage.getItem('token'));
+console.log("TOKEN :"+token);
+
+let websocket = new WebSocket(`ws://68.183.27.173:8080/?token=${token}`);
+
+websocket.onopen =function(evt){
+  console.log(evt);
+}
+
+websocket.onclose =function(evt){
+  console.log(evt);
+}
+
+websocket.onmessage =function(evt){
+  console.log(evt);
+}
+websocket.onoerror =function(evt){
+  console.log(evt);
+}
+
+var liked = true;
+
+function websocketConnect(token){
+    let websocket = new WebSocket(`ws://68.183.27.173:8080/?token=${token}`);
+
+  websocket.onopen =function(evt){
+    console.log(evt);
+  }
+
+  websocket.onclose =function(evt){
+    console.log(evt);
+  }
+
+  websocket.onmessage =function(evt){
+    //TODO nombrar los span con los respectivos nombres
+    var data=JSON.parse(evt.data);
+    console.log(evt);
+    let xuser;
+    switch (data.type){
+      case "disconnect": xuser-=1;
+      console.log("User DisConnected: ",xuser);
+      break;
+     
+      case "user-connetec": xuser+=1;
+      console.log("User Connected: ",xuser);
+      break;
+    }
+    console.log(data);
+    
+
+  }
+  websocket.onoerror =function(evt){
+     console.log(evt);   
+  }
+  
+}
+
+//WebSocket
+
+
  //EQUIVALENETE A DOCUMENT READY
  (function(){
     redirectLogin();
