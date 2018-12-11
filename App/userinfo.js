@@ -414,7 +414,7 @@ function publicarcomment(id){
 }
 
 //obtener Comentarios
-function obtenercomment(id){
+function getcomments(id){
 
   var {token} = JSON.parse(localStorage.getItem('token')); 
   
