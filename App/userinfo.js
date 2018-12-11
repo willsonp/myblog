@@ -413,7 +413,7 @@ function publicarcomment(id){
   
 }
 
-//publicar
+//obtener Comentarios
 function obtenercomment(id){
 
   var {token} = JSON.parse(localStorage.getItem('token')); 
