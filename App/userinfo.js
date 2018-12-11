@@ -192,8 +192,8 @@ function getuserinfo(){
                       <p class="liked" id="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up" Onclick="getuserliked(${id},${liked})"></i></a>
                       <!-- Post Content -->
                       <p>${body}</p>
-                      <blockquote class="blockquote">
-                        <p class="mb-0"><i class="fa fa-fw fa-comments"> <a href="../pages/comentarios.html"> </i>Comments:${comments} </a></p>
+                      <blockquote class="blockquote" >
+                        <p class="mb-0 ><i class="fa fa-fw fa-comments"> <a href="../pages/comentarios.html"> </i>Comments:${comments} </a></p>
                       </blockquote>
             
                       <p > <span >
@@ -209,9 +209,9 @@ function getuserinfo(){
                         <div class="card-body">
                           <form>
                             <div class="form-group">
-                              <textarea class="form-control" rows="3"></textarea>
+                              <textarea class="form-control" rows="3" id="comentar-${id}" name="comentar-${id}"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-primary" onClick=publicarcomment(${id})>Enviar</button>
                           </form>
                         </div>
                       </div>
@@ -388,6 +388,29 @@ function websocketConnect(token){
 }
 
 //WebSocket
+
+//publicar
+function publicarcomment(id){
+
+ var {token} = JSON.parse(localStorage.getItem('token')); 
+ 
+ let cometario = $("#comentar-"+id).val();
+
+ var data ={body:cometario};
+ fetch(`http://68.183.27.173:8080/post/${id}/comment`,{
+  method:('POST'), //or 'PUT'
+  body: JSON.stringify(data),
+  headers:{
+      'Content-Type':'Application/json',
+      'Authorization':`Bearer ${token}`
+  }
+  
+}).then(
+  res =>{
+    console.log("Probando",cometario);
+  })
+  
+}
 
 
  //EQUIVALENETE A DOCUMENT READY

@@ -198,15 +198,13 @@ function websocketConnect(token){
     console.log(evt);
     let xuser;
     switch (data.type){
-      case "disconnect": xuser-=1;
-      console.log("User DisConnected: ",xuser);
+      case "disconnect":console.log("User name :"+data.userName + "User Email :"+ data.userEmail);
       break;
      
-      case "user-connetec": xuser+=1;
-      console.log("User Connected: ",xuser);
+      case "user-connetec": console.log("User name :"+data.userName + "User Email :"+ data.userEmail);
       break;
     }
-    console.log(data);
+    //console.log("User name :"+data.userName + "User Email :"+ data.userEmail);
     
 
   }
