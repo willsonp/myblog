@@ -216,7 +216,14 @@ function getuserinfo(){
                         </div>
                       </div>
             
-                      
+                      <!-- Single Comment -->
+                      <div class="media mb-4">
+                        <div class="media-body id="cuerpocomment">
+                          <h5 class="mt-0" id="commentname">Commenter Name</h5>
+                          
+                        </div>
+                      </div>
+                      <!---->
                       </div>
             
                     <!-- Sidebar Widgets Column -->
@@ -260,6 +267,8 @@ function getuserinfo(){
             document.getElementById("contenedor").innerHTML+=obj;
         
            console.log('Sussess',JSON.stringify(response));
+           
+           getcomments(id);
          
      })       
          .catch(error =>{
@@ -431,7 +440,7 @@ function getcomments(id){
    
  }).then(
    res =>{
-     console.log('Probando Obtener Post');
+    console.log('Comments :',JSON.stringify(response));
    })
    
  }
