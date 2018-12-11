@@ -407,12 +407,35 @@ function publicarcomment(id){
   
 }).then(
   res =>{
-    console.log("Probando",cometario);
+    getuserinfo();
+    getpostsbyuser();
   })
   
 }
 
+//publicar
+function obtenercomment(id){
 
+  var {token} = JSON.parse(localStorage.getItem('token')); 
+  
+  let cometario = $("#comentar-"+id).val();
+ 
+  var data ={body:cometario};
+  fetch(`http://68.183.27.173:8080/post/${id}/comment`,{
+   method:('GET'), //or 'PUT'
+  // body: JSON.stringify(data),
+   headers:{
+       'Content-Type':'Application/json',
+       'Authorization':`Bearer ${token}`
+   }
+   
+ }).then(
+   res =>{
+     console.log('Probando Obtener Post');
+   })
+   
+ }
+ 
  //EQUIVALENETE A DOCUMENT READY
  (function(){     
    // websocketConnect(token);
