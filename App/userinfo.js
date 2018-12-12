@@ -146,6 +146,15 @@ function getuserinfo(){
                     mostrarcat+=`<ul class="list-unstyled mb-0"><li><a href="#">`+(categoria[i])+`</a></li></ul>`;   
                   } 
                   
+                  //GetComments
+                  // getcomments(id).then(response =>{
+                  //   var {token} = JSON.parse(localStorage.getItem('token'));
+   
+                  //   let {body,createdAt,id,postId,userEmail,userId,userName}=response[element];
+                  //   let fechacoment = new Date(createdAt).toLocaleDateString('es-RD');
+                  //   console.log('Cometarios',JSON.stringify(response));
+
+                  // });
                   /*
                 return `<h1 class="htitulo"> ${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a></h1>
                         <h4>${tags}</h4>                        
@@ -418,10 +427,10 @@ function getcomments(id){
 
   var {token} = JSON.parse(localStorage.getItem('token')); 
   
-  let cometario = $("#comentar-"+id).val();
+  //let cometario = $("#comentar-"+id).val();
  
-  var data ={body:cometario};
-  fetch(`http://68.183.27.173:8080/post/${id}/comment`,{
+ // var data ={body:cometario};
+  let data =fetch(`http://68.183.27.173:8080/post/${id}/comment`,{
    method:('GET'), //or 'PUT'
   // body: JSON.stringify(data),
    headers:{
@@ -431,7 +440,9 @@ function getcomments(id){
    
  }).then(
    res =>{
-     console.log('Probando Obtener Post');
+     if (res.ok){
+       return res.json();
+     }     
    })
    
  }
