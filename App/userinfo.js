@@ -430,7 +430,6 @@ function getcomments(id){
       let fechacomment =new Date(createdAt).toLocaleDateString('es-RD');
       document.getElementById("cuerpocomment").innerHTML+=`<i class="fa fa-fw fa-user-plus"></i>
                    ${userName} (<i class="fa fa-fw fa-envelope">${userEmail})</i> </a>
-                   
                 </h5>                                                                                           
                 <p >Created on: ${fechacomment} </p>                       
                 <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${body}</i></h5>
