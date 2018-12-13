@@ -419,23 +419,33 @@ function getcomments(id){
     if(res.ok){
       return res.json();
      }
-     throw Error("Error listando post");
+     throw Error("Error listando Comentarios");
    })
    
  }
  function mostrarcomentarios(id){
       getcomments(id).then(response =>{
         
-      let  {body,createdAt,userEmail,userName}=response;      
+        // "body": "vamos a dejar comentarios a mi blog saluds..!",
+        // "createdAt": 1544568665589,
+        // "id": 280,
+        // "postId": 42,
+        // "userEmail": "willvalentin@live.com",
+        // "userId": 115,
+        // "userName":
+      let  {body,createdAt,id,userEmail,postId,userId,userName}=response;      
       let fechacomment =new Date(createdAt).toLocaleDateString('es-RD');
       document.getElementById("cuerpocomment").innerHTML+=`<i class="fa fa-fw fa-user-plus"></i>
                    ${userName} (<i class="fa fa-fw fa-envelope">${userEmail})</i> </a>
+                   
                 </h5>                                                                                           
                 <p >Created on: ${fechacomment} </p>                       
-                <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${body}</i></h5>
+                <h5>Comentario :${body}</h5>
                 <hr>`;
 
-     })
+     })    
+     
+
  }
  
  //EQUIVALENETE A DOCUMENT READY
