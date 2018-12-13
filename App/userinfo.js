@@ -146,28 +146,10 @@ function getuserinfo(){
                     mostrarcat+=`<ul class="list-unstyled mb-0"><li><a href="#">`+(categoria[i])+`</a></li></ul>`;   
                   } 
                   
-                  /*
-                return `<h1 class="htitulo"> ${title}  <a href="../pages/blog.html"> <i class="fa fa-fw fa-pencil"></i> </a></h1>
-                        <h4>${tags}</h4>                        
-                        <h4>By: 
-                           <a href="../pages/blog.html"><i class="fa fa-fw fa-user-o"></i> ${userName}</a> 
-                           <a href="../pages/blog.html">(<i class="fa fa-fw fa-envelope">${userEmail})</i></a>                           
-                        </h4>                                                                                           
-                       
-                        Posted on: ${fecha}                       
-                        <h5 class="hcoment">
-                                <p>
-                                Likes: <i class="fa fa-fw fa-thumbs-o-up" id="likes">${likes}</i>    
-                                | Views: <i class="fa fa-fw fa-eye" id="vistas">${views}</i>  
-                                 </p>
-                        </h5>
-                        
-                        <h5>${body}                           
-                        </h5>
-                        <h5><p class="liked">Liked: <a href="#"> <i class="fa fa-fw fa-thumbs-up"></i></a>
-                        | Comments: <a href="../pages/comentarios.html"><i class="fa fa-fw fa-comments"></i> ${comments} </a></p>
-                        </h5>`
-                 */
+
+                //GetComments
+                mostrarcomentarios(id);
+                                
 
                 return `<!-- Page Content -->
                     <div class="row">
@@ -218,8 +200,8 @@ function getuserinfo(){
             
                       <!-- Single Comment -->
                       <div class="media mb-4">
-                        <div class="media-body id="cuerpocomment">
-                          <h5 class="mt-0" id="commentname">Commenter Name</h5>
+                        <div class="media-body name="cuerpocomment" id="cuerpocomment">
+                          <h5 class="mt-0" id="commentname">Comentarios</h5>
                           
                         </div>
                       </div>
@@ -267,8 +249,6 @@ function getuserinfo(){
             document.getElementById("contenedor").innerHTML+=obj;
         
            console.log('Sussess',JSON.stringify(response));
-           
-           getcomments(id);
          
      })       
          .catch(error =>{
@@ -426,30 +406,45 @@ function publicarcomment(id){
 function getcomments(id){
 
   var {token} = JSON.parse(localStorage.getItem('token')); 
-  
-  let cometario = $("#comentar-"+id).val();
  
-  var data ={body:cometario};
-  fetch(`http://68.183.27.173:8080/post/${id}/comment`,{
+  return fetch(`http://68.183.27.173:8080/post/${id}/comment`,{
    method:('GET'), //or 'PUT'
   // body: JSON.stringify(data),
    headers:{
        'Content-Type':'Application/json',
        'Authorization':`Bearer ${token}`
-   }
-   
+   }   
  }).then(
    res =>{
-    console.log('Comments :',JSON.stringify(response));
+    if(res.ok){
+      return res.json();
+     }
+     throw Error("Error listando post");
    })
    
+ }
+ function mostrarcomentarios(id){
+      getcomments(id).then(response =>{
+        
+      let  {body,createdAt,userEmail,userName}=response;      
+      let fechacomment =new Date(createdAt).toLocaleDateString('es-RD');
+      document.getElementById("cuerpocomment").innerHTML+=`<i class="fa fa-fw fa-user-plus"></i>
+                   ${userName} (<i class="fa fa-fw fa-envelope">${userEmail})</i> </a>
+                   
+                </h5>                                                                                           
+                <p >Created on: ${fechacomment} </p>                       
+                <h5 class="hcoment">Posts :<i class="fa fa-fw fa-star">${body}</i></h5>
+                <hr>`;
+
+     })
  }
  
  //EQUIVALENETE A DOCUMENT READY
  (function(){     
    // websocketConnect(token);
     getuserinfo();
-    getpostsbyuser();
+    getpostsbyuser();  
+    
  })();
 
  
