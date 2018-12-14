@@ -14,7 +14,11 @@ function getposts(){
 
     var usuario = JSON.parse(localStorage.getItem('token'));
     var userId = JSON.parse(localStorage.getItem('id'));
-   
+    var userlogued =usuario.name;
+
+    document.getElementById("user-logued").innerHTML+=`${userlogued}`;
+    console.log("Usuario: ", userlogued);
+     
     postListConnect(usuario,userId).then(response =>{
          //una forma
         //  response.forEach(element => {
@@ -22,7 +26,7 @@ function getposts(){
         //     document.getElementById("post").innerHTML+=`<h4>${title}</h4>
         //                                                 <h5>${userEmail}</h5>`;
         //otra forma REACT
-
+        
             let obj=Object.keys(response).map(element=>{
 
                 let {title, userEmail,userName,id,tags,post,comments,createdAt,like,body,userId}=response[element];
