@@ -163,8 +163,13 @@ function getposts(){
 
 
 //WEB Socket
+if (token==null){
+  console.log('Debe Registrarse');
+  redirectLogin();
+}
+
 var {token} = JSON.parse(localStorage.getItem('token'));
-console.log("TOKEN :"+token);
+
 
 let websocket = new WebSocket(`ws://68.183.27.173:8080/?token=${token}`);
 
