@@ -133,22 +133,19 @@ function getposts(){
  }
 
 
- let postListConnect=({token})=>{
-     return  fetch("http://68.183.27.173:8080/post",{
-        method:'GET', //or 'PUT'
-      //  body: JSON.stringify(data),
-        headers:{
-            'Content-Type':'Application/json',
-            'Authorization':`Bearer ${token}`
-        }
-        
-    }).then(
-        res =>{
-            if(res.ok){
-                return res.json();
-            }
-            throw Error("Error listando post")
-        })
+ let postListConnect=async ({token})=>{
+     const res = await fetch("http://68.183.27.173:8080/post", {
+     method: 'GET',
+     //  body: JSON.stringify(data),
+     headers: {
+       'Content-Type': 'Application/json',
+       'Authorization': `Bearer ${token}`
+     }
+   });
+   if (res.ok) {
+     return res.json();
+   }
+   throw Error("Error listando post");
  }
 
  function redirectLogin(){
